@@ -1,7 +1,6 @@
 import Nat           "mo:base/Nat";
 import Principal     "mo:base/Principal";
 import HashMap       "mo:base/HashMap";
-import Iter          "mo:base/Iter"; // ✅ Tambahan penting untuk menghitung total suara
 
 actor Voting {
 
@@ -29,9 +28,13 @@ actor Voting {
     return { rust = r; as = a; motoko = m };
   };
 
-  // ✅ Fungsi untuk menghitung total suara masuk
+  // ✅ Fungsi untuk menghitung total suara masuk (perbaikan manual)
   public query func totalVotes() : async Nat {
-    return Iter.size(votes.keys()); // Hitung jumlah key = jumlah suara
+    var count : Nat = 0;
+    for (key in votes.keys()) {
+      count += 1;
+    };
+    return count;
   };
 
   // ✅ Fungsi untuk cek apakah caller sudah pernah voting
