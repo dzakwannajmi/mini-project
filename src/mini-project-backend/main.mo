@@ -1,9 +1,9 @@
 import Nat           "mo:base/Nat";
 import Principal     "mo:base/Principal";
 import HashMap       "mo:base/HashMap";
+import Debug         "mo:base/Debug";
 
-actor Voting {
-
+actor {
   public type Language = { #rust; #assemblyScript; #motoko };
 
   let votes : HashMap.HashMap<Principal, Language> =
@@ -13,8 +13,7 @@ actor Voting {
       Principal.hash
     );
 
-  // ✅ Fungsi untuk mengambil hasil voting
-  public query func getResults() : async { rust: Nat; as: Nat; motoko: Nat } {
+  public query func getResults() : async { rust: Nat; assemblyScript: Nat; motoko: Nat } {
     var r: Nat = 0;
     var a: Nat = 0;
     var m: Nat = 0;
@@ -25,10 +24,9 @@ actor Voting {
         case (#motoko)         { m += 1 };
       };
     };
-    return { rust = r; as = a; motoko = m };
+    return { rust = r; assemblyScript = a; motoko = m };
   };
 
-  // ✅ Fungsi untuk menghitung total suara masuk (perbaikan manual)
   public query func totalVotes() : async Nat {
     var count : Nat = 0;
     for (key in votes.keys()) {
@@ -37,7 +35,6 @@ actor Voting {
     return count;
   };
 
-  // ✅ Fungsi untuk cek apakah caller sudah pernah voting
   public shared query(funcMsg) func hasVoted() : async Bool {
     let caller = funcMsg.caller;
     switch (votes.get(caller)) {
@@ -46,21 +43,18 @@ actor Voting {
     }
   };
 
-  // ✅ Fungsi untuk vote pilihan
   public shared(funcMsg) func vote(lang: Language) : async Bool {
     let caller = funcMsg.caller;
-    let alreadyVoted = switch (votes.get(caller)) {
-      case (?_) true;
-      case null false;
+
+    if (votes.get(caller) != null) {
+      return false;
     };
-    if (alreadyVoted) {
-      return false; // tidak boleh voting 2x
-    };
+
+    Debug.print("🗳️ Vote dari: " # Principal.toText(caller));
     votes.put(caller, lang);
     return true;
   };
 
-  // ✅ Fungsi greet untuk user login
   public shared query(funcMsg) func greet() : async Text {
     let caller = funcMsg.caller;
     return "Hello, user " # Principal.toText(caller) # " 👋";
