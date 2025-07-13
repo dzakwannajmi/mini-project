@@ -1,4 +1,4 @@
-/* index.css */
+/* src/mini-project-frontend/src/index.css */
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
   background: linear-gradient(135deg, #4f46e5, #4338ca);
   color: #fff;
   min-height: 100vh;
@@ -25,9 +25,23 @@ body {
   max-width: 700px;
   width: 100%;
   text-align: center;
+  overflow: hidden;
+  position: relative;
 }
 
-button {
+.logo {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  padding-top: 0;
+  transform: translateY(0);
+}
+
+.button {
   background-color: #6366f1;
   color: white;
   border: none;
@@ -37,29 +51,102 @@ button {
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
+.button:hover {
   background-color: #4f46e5;
+  transform: translateY(-2px);
 }
 
-.logout-btn {
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logout-button {
   background-color: #ef4444;
+  margin-top: 2rem;
 }
 
-.logout-btn:hover {
+.logout-button:hover {
   background-color: #dc2626;
 }
 
-.status {
+.status-message {
   margin-top: 1rem;
   font-weight: 500;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  display: inline-block;
 }
 
-.result-chart {
+.button-group {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  color: #333;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.chart-container {
   background: #f3f4f6;
   padding: 1rem;
   margin-top: 2rem;
   border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+h2,
+h3 {
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #4a5568;
+  margin-bottom: 0.8rem;
+}
+
+code {
+  background-color: #e2e8f0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #2d3748;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+  .button {
+    width: calc(50% - 1rem);
+  }
+  .button-group {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
