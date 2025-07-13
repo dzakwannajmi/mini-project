@@ -2,6 +2,8 @@
 
 Welcome to your `mini-project` and to the Internet Computer development community! This project serves as a small-scale demonstration (`mini-project`) designed for workshops and basic learning about building decentralized applications (dApps) on the DFINITY Internet Computer (IC) platform.
 
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/7017b377-9680-4140-bd42-8b4b4b2ca16a" />
+
 By default, creating a new DFINITY project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
 
 **The primary goals of this project are to demonstrate:**
