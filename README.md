@@ -49,7 +49,7 @@ If you want to test your project locally, you can use the following commands:
     dfx start --background --clean
 
     # Deploys your canisters to the replica and generates your candid interface
-    dfx deploy
+    dfx deploy --playground
     ```
     Once the job completes, your backend canister will be deployed.
 
