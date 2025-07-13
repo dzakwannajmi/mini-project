@@ -1,26 +1,30 @@
 {
+  "version": 1,
   "canisters": {
     "mini-project-backend": {
-      "main": "src/mini-project-backend/main.mo",
-      "type": "motoko"
+      "type": "motoko",
+      "main": "src/mini-project-backend/main.mo"
     },
     "mini-project-frontend": {
-      "dependencies": [
-        "mini-project-backend"
-      ],
-      "source": [
-        "src/mini-project-frontend/dist"
-      ],
       "type": "assets",
+      "source": ["src/mini-project-frontend/dist"],
+      "dependencies": ["mini-project-backend"],
       "workspace": "mini-project-frontend"
     }
   },
   "defaults": {
     "build": {
-      "args": "",
       "packtool": ""
     }
   },
-  "output_env_file": ".env",
-  "version": 1
+  "dfx": "0.20.0",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4943",
+      "type": "ephemeral"
+    },
+    "ic": {
+      "providers": ["https://ic0.app"]
+    }
+  }
 }
